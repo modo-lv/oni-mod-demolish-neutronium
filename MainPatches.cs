@@ -50,7 +50,7 @@ namespace DemolishNeutronium {
           __result = _neutroniumDigTime;
         }
         else {
-          _neutroniumDigTime = __result;
+          _neutroniumDigTime = __result *= 5;
           cell.Element().hardness = 255;
         }
       }
@@ -81,7 +81,7 @@ namespace DemolishNeutronium {
         if (!__instance.IsNeutronium()) return;
 
         // Netronium's work time is set to infinity, so we have to override it manually. 
-        __instance.SetWorkTime(Diggable.GetApproximateDigTime(__instance.Cell()) * 5);
+        __instance.SetWorkTime(Diggable.GetApproximateDigTime(__instance.Cell()));
         __instance.WorkTimeRemaining = __instance.workTime;
         // Skill requirement has been determined, restore hardness to original
         __instance.Element().hardness = 255;
