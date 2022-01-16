@@ -4,7 +4,9 @@ An [Oxygen Not Included](https://store.steampowered.com/app/457140/Oxygen_Not_In
 ## Description
 Allows removing Neutronium tiles with the Dig command.
 
-The demolishing requires Superduperhard Digging skill, takes 5 times longer than digging Obsidian, and does not create debris (no Neutronium to collect).
+Tired of uneven map edges and geyser platforms messing with your room layouts? Always wanted to run a pipe or a wire directly under a volcano? Now you can!
+
+Demolishing Neutronium requires Superduperhard Digging skill, takes over 5 times longer than digging Obsidian and does not create debris (no Neutronium to collect).
 
 ## Installation
 
