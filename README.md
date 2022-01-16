@@ -9,7 +9,7 @@ The demolishing requires Superduperhard Digging skill, takes 5 times longer than
 ## Installation
 
 * [Subscribe to the mod on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2721654252)
-* Or manually download the latest [release](https://github.com/modo-lv/oni-mod-demolish-neutronium/releases) and unzip the contents into your local mods folder (create the `Local` folder if it doesn't exist):
+* Or manually download the [latest release](https://github.com/modo-lv/oni-mod-demolish-neutronium/releases/latest) and unzip the contents into your local mods folder (create the `Local` folder if it doesn't exist):
   * Windows: `%USERPROFILE%\Documents\Klei\OxygenNotIncluded\mods\Local`
   * Linux: `~/.config/unity3d/Klei/OxygenNotIncluded/mods/Local`
   * Mac: `~/Library/Application Support/unity.Klei.Oxygen Not Included/mods/Local` 
