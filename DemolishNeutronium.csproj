@@ -61,8 +61,10 @@
         <Compile Include="Extensions\CellExtensions.cs"/>
         <Compile Include="Extensions\DiggableExtensions.cs"/>
         <Compile Include="Extensions\ElementExtensions.cs"/>
-        <Compile Include="MainPatches.cs"/>
+        <Compile Include="Main.cs" />
+        <Compile Include="MainPatches.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Main\Log.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="mod.yaml">
