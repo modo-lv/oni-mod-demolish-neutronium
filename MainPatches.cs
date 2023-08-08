@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using DemolishNeutronium.Extensions;
 using HarmonyLib;
+using JetBrains.Annotations;
+using KMod;
 
 // ReSharper disable ArrangeTypeModifiers
 // ReSharper disable ArrangeTypeMemberModifiers
@@ -13,12 +16,25 @@ namespace DemolishNeutronium {
   class MainPatches {
 
     /// <summary>
+    /// Neutronium Dust element (added by Rocketry Expanded mod).
+    /// </summary>
+    [ItemCanBeNull] public static readonly Lazy<Element> NeutroniumDust = new Lazy<Element>(() => {
+      var result = ElementLoader.elements.FindNeutroniumDust();
+      Main.Log.Info(
+        NeutroniumDust != null
+          ? "Neutronium Dust element found, will be dropped by Neutronium digs."
+          : "Neutronium Dust not found, digs will drop nothing."
+      );
+      return result;
+    });
+
+    /// <summary>
     /// Make Neutronium diggable.   
     /// </summary>
     [HarmonyPatch(nameof(Diggable.Undiggable))]
     [HarmonyPostfix]
     public static void Undiggable(Element e, ref Boolean __result) {
-      if (e.id == SimHashes.Unobtanium)
+      if (e.IsNeutronium())
         __result = false;
     }
 
@@ -104,9 +120,17 @@ namespace DemolishNeutronium {
     /// </summary>
     [HarmonyPatch(typeof(WorldDamage), nameof(WorldDamage.OnDigComplete))]
     [HarmonyPrefix]
-    static void OnDigComplete(ref Single mass, Byte element_idx) {
+    static void OnDigComplete(Int32 cell, ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
-      mass = 0;
+
+      if (NeutroniumDust.Value is Element dust) {
+        element_idx = dust.idx;
+        // Mass is in kg, always halved by the game (so we double it).
+        mass = 2 * mass / 10 / 1000 / 10; // 10t => 100g
+      }
+      else {
+        mass = 0;
+      }
     }
   }
 }
