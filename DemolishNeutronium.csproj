@@ -98,7 +98,8 @@
         <Compile Include="Extensions\DiggableExtensions.cs"/>
         <Compile Include="Extensions\ElementExtensions.cs"/>
         <Compile Include="Main.cs" />
-        <Compile Include="MainPatches.cs" />
+        <Compile Include="MainMod.cs" />
+        <Compile Include="Main\Settings.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetouredField.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetouredMethod.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetourException.cs" />

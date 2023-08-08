@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using DemolishNeutronium.Extensions;
 using HarmonyLib;
 using JetBrains.Annotations;
 using KMod;
+using Newtonsoft.Json;
+using PeterHan.PLib.Core;
+using PeterHan.PLib.Options;
+using UnityEngine;
 
 // ReSharper disable ArrangeTypeModifiers
 // ReSharper disable ArrangeTypeMemberModifiers
@@ -13,7 +16,14 @@ using KMod;
 namespace DemolishNeutronium {
 
   [HarmonyPatch(typeof(Diggable))]
-  class MainPatches {
+  // ReSharper disable once UnusedType.Global
+  class MainMod : UserMod2 {
+
+    public override void OnLoad(Harmony harmony) {
+      base.OnLoad(harmony);
+      PUtil.InitLibrary();
+      new POptions().RegisterOptions(this, typeof(Main.Settings));
+    }
 
     /// <summary>
     /// Neutronium Dust element (added by Rocketry Expanded mod).
@@ -28,6 +38,21 @@ namespace DemolishNeutronium {
       return result;
     });
 
+    public static Lazy<Main.Settings> Config = new Lazy<Main.Settings>(Main.Settings.Load);
+
+    /// <summary>
+    /// (Re)read the settings every time the game is loaded,
+    /// to allow for a direct (config file edit) updates without having to go through the main menu,
+    /// as well as the normal GUI approach. 
+    /// </summary>
+    [HarmonyPatch(typeof(SaveLoader), "OnSpawn")]
+    [HarmonyPostfix]
+    public static void OnLoad() {
+      Config = new Lazy<Main.Settings>(Main.Settings.Load);
+      Main.Log.Info($"Settings loaded: {JsonConvert.SerializeObject(Config.Value)}");
+    }
+
+
     /// <summary>
     /// Make Neutronium diggable.   
     /// </summary>
@@ -37,6 +62,7 @@ namespace DemolishNeutronium {
       if (e.IsNeutronium())
         __result = false;
     }
+
 
     /// <summary>
     /// Make dig time calculations work.
@@ -84,7 +110,6 @@ namespace DemolishNeutronium {
     [HarmonyPatch(typeof(Diggable), "OnSpawn")]
     class OnSpawn {
 
-
       static void Prefix(ref Diggable __instance) {
         if (!__instance.IsNeutronium()) return;
 
@@ -102,6 +127,7 @@ namespace DemolishNeutronium {
         // Skill requirement has been determined, restore hardness to original
         __instance.Element().hardness = 255;
       }
+
     }
 
     /// <summary>
@@ -123,10 +149,9 @@ namespace DemolishNeutronium {
     static void OnDigComplete(Int32 cell, ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
 
-      if (NeutroniumDust.Value is Element dust) {
+      if (Config.Value.DustEnabled && NeutroniumDust.Value is Element dust) {
         element_idx = dust.idx;
-        // Mass is in kg, always halved by the game (so we double it).
-        mass = 2 * mass / 10 / 1000 / 10; // 10t => 100g
+        mass = Config.Value.DustMultiplier * (mass / 1000) * Config.Value.DustAmount;
       }
       else {
         mass = 0;
