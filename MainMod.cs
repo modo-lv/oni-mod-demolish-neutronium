@@ -6,7 +6,6 @@ using KMod;
 using Newtonsoft.Json;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
-using UnityEngine;
 
 // ReSharper disable ArrangeTypeModifiers
 // ReSharper disable ArrangeTypeMemberModifiers
@@ -14,17 +13,9 @@ using UnityEngine;
 // ReSharper disable UnusedType.Local
 
 namespace DemolishNeutronium {
-
-  [HarmonyPatch(typeof(Diggable))]
   // ReSharper disable once UnusedType.Global
+  [HarmonyPatch]
   class MainMod : UserMod2 {
-
-    public override void OnLoad(Harmony harmony) {
-      base.OnLoad(harmony);
-      PUtil.InitLibrary();
-      new POptions().RegisterOptions(this, typeof(Main.Settings));
-    }
-
     /// <summary>
     /// Neutronium Dust element (added by Rocketry Expanded mod).
     /// </summary>
@@ -38,7 +29,20 @@ namespace DemolishNeutronium {
       return result;
     });
 
+    /// <summary>
+    /// Mod settings. 
+    /// </summary>
     public static Lazy<Main.Settings> Config = new Lazy<Main.Settings>(Main.Settings.Load);
+
+    
+    /// <summary>
+    /// Initialize PLib stuff and configure the settings window.
+    /// </summary>
+    public override void OnLoad(Harmony harmony) {
+      base.OnLoad(harmony);
+      PUtil.InitLibrary();
+      new POptions().RegisterOptions(this, typeof(Main.Settings));
+    }
 
     /// <summary>
     /// (Re)read the settings every time the game is loaded,
@@ -47,16 +51,15 @@ namespace DemolishNeutronium {
     /// </summary>
     [HarmonyPatch(typeof(SaveLoader), "OnSpawn")]
     [HarmonyPostfix]
-    public static void OnLoad() {
+    public static void OnSaveGameLoad() {
       Config = new Lazy<Main.Settings>(Main.Settings.Load);
       Main.Log.Info($"Settings loaded: {JsonConvert.SerializeObject(Config.Value)}");
     }
 
-
     /// <summary>
     /// Make Neutronium diggable.   
     /// </summary>
-    [HarmonyPatch(nameof(Diggable.Undiggable))]
+    [HarmonyPatch(typeof(Diggable), nameof(Diggable.Undiggable))]
     [HarmonyPostfix]
     public static void Undiggable(Element e, ref Boolean __result) {
       if (e.IsNeutronium())
@@ -133,9 +136,9 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Use the purple demolishing laser instead of the regular red since we're not getting any resources from the dig.
     /// </summary>
-    [HarmonyPatch("UpdateColor")]
+    [HarmonyPatch(typeof(Diggable), "UpdateColor")]
     [HarmonyPostfix]
-    public static void UpdateColor(ref Diggable __instance, ref HashedString ___multitoolContext) {
+    static void UpdateColor(ref Diggable __instance, ref HashedString ___multitoolContext) {
       if (!__instance.IsNeutronium()) return;
 
       ___multitoolContext = "demolish";
@@ -146,7 +149,7 @@ namespace DemolishNeutronium {
     /// </summary>
     [HarmonyPatch(typeof(WorldDamage), nameof(WorldDamage.OnDigComplete))]
     [HarmonyPrefix]
-    static void OnDigComplete(Int32 cell, ref Single mass, ref UInt16 element_idx) {
+    static void OnDigComplete(ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
 
       if (Config.Value.DustEnabled && NeutroniumDust.Value is Element dust) {
