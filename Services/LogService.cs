@@ -1,4 +1,5 @@
 ﻿using System;
+using static Debug;
 
 // ReSharper disable once CheckNamespace
 namespace DemolishNeutronium {
@@ -7,7 +8,16 @@ namespace DemolishNeutronium {
   /// </summary>
   public static class LogService {
     public static void Info(String line) {
-      Debug.Log($"[{Main.ModName}] {line}");
+      Log($"[{Main.ModName}] {line}");
+    }
+
+    /// <summary>
+    /// Log a message only if running a debug build.
+    /// </summary>
+    public static void Debug(String line) {
+#if DEBUG
+      Info(line);
+#endif
     }
   }
 }
