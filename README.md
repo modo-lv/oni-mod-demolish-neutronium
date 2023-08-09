@@ -8,12 +8,13 @@ Tired of uneven map edges and geyser platforms messing with your room layouts? A
 
 ## Details
 * Requires *Super-Duperhard Digging* skill.
-* Takes over 5 times longer than digging Obsidian.
+* Takes 5 times longer than digging Obsidian (configurable).
 * Does not drop any Neutronium.
 
 ## Compatibility with other mods
 
-* **[Rocketry Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2837919908)**: Excavating Neutronium will drop Neutronium Dust (configurable). 
+* **[Rocketry Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2837919908)**: Excavating Neutronium will drop Neutronium Dust (configurable).
+* **[Mass-based Digging](https://steamcommunity.com/sharedfiles/filedetails/?id=1835785649)**: Excavation times will be different depending on the mass of the Neutronium tile (normally the game only varies dig time for tiles under 400kg).
 
 ## Installation
 

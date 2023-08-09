@@ -110,7 +110,7 @@ namespace DemolishNeutronium {
           LogService.Debug($"Dig time for cell {cell} already known: {__result}");
         }
         else {
-          DigTimes[cell] = __result *= 5;
+          DigTimes[cell] = __result *= Config.Value.DigTimeMultiplier;
           LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring Neutronium hardness.");
           cell.Element().hardness = Unobtanium.Element().hardness;
         }
