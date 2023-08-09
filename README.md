@@ -6,7 +6,14 @@ Allows removing Neutronium tiles with the Dig command.
 
 Tired of uneven map edges and geyser platforms messing with your room layouts? Always wanted to run a pipe or a wire directly under a volcano? Now you can!
 
-Demolishing Neutronium requires Superduperhard Digging skill, takes over 5 times longer than digging Obsidian and does not create debris (no Neutronium to collect).
+## Details
+* Requires *Super-Duperhard Digging* skill.
+* Takes over 5 times longer than digging Obsidian.
+* Does not drop any Neutronium.
+
+## Compatibility with other mods
+
+* **[Rocketry Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2837919908)**: Excavating Neutronium will drop Neutronium Dust (configurable). 
 
 ## Installation
 
