@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DemolishNeutronium.Extensions;
 using DemolishNeutronium.Models;
 using HarmonyLib;
@@ -7,6 +8,7 @@ using KMod;
 using Newtonsoft.Json;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
+using static SimHashes;
 
 // ReSharper disable ArrangeTypeModifiers
 // ReSharper disable ArrangeTypeMemberModifiers
@@ -35,6 +37,18 @@ namespace DemolishNeutronium {
     /// </summary>
     public static Lazy<Settings> Config = new Lazy<Settings>(SettingsService.Load);
 
+    /// <summary>
+    /// Holds dig times for different Neutronium tiles.
+    /// </summary>
+    /// <remarks>
+    /// In the regular game at the time of writing, this isn't strictly necessary,
+    /// since the game only varies digging times for tiles under 400 kg of mass,
+    /// and all Neutronium tiles are either 10 or 20 tons.
+    /// However, other Neutronium masses are possible through sandbox or mods,
+    /// (or in future game versions), so it's best to calculate and track each tile individually.  
+    /// </remarks>
+    private static readonly Dictionary<Int32, Single> DigTimes = new Dictionary<Int32, Single>();
+
     
     /// <summary>
     /// Initialize PLib stuff and configure the settings window.
@@ -54,6 +68,7 @@ namespace DemolishNeutronium {
     [HarmonyPostfix]
     public static void OnSaveGameLoad() {
       Config = new Lazy<Settings>(SettingsService.Load);
+      DigTimes.Clear();
     }
 
     /// <summary>
@@ -77,13 +92,11 @@ namespace DemolishNeutronium {
     [HarmonyPatch(typeof(Diggable), nameof(Diggable.GetApproximateDigTime))]
     class GetApproximateDigTime {
 
-      private static Single _neutroniumDigTime = Single.MaxValue;
-
-
       static void Prefix(Int32 cell) {
         if (!cell.Element().IsNeutronium()) return;
-        if (_neutroniumDigTime < Single.MaxValue) return;
+        if (DigTimes.Get(cell, Single.MaxValue) < Single.MaxValue) return;
 
+        LogService.Debug($"Dig time for cell {cell} (mass: {Grid.Mass[cell]}) not calculated yet, setting hardness to 254.");
         cell.Element().hardness = 254;
       }
 
@@ -91,11 +104,13 @@ namespace DemolishNeutronium {
       static void Postfix(Int32 cell, ref Single __result) {
         if (!cell.Element().IsNeutronium()) return;
 
-        if (_neutroniumDigTime < Single.MaxValue) {
-          __result = _neutroniumDigTime;
+        if (DigTimes.Get(cell, Single.MaxValue) < Single.MaxValue) {
+          __result = DigTimes[cell];
+          LogService.Debug($"Dig time for cell {cell} already known: {__result}");
         }
         else {
-          _neutroniumDigTime = __result *= 5;
+          DigTimes[cell] = __result *= 5;
+          LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring hardness to 255.");
           cell.Element().hardness = 255;
         }
       }

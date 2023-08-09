@@ -95,6 +95,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Extensions\CellExtensions.cs"/>
+        <Compile Include="Extensions\DictionaryExtensions.cs" />
         <Compile Include="Extensions\DiggableExtensions.cs"/>
         <Compile Include="Extensions\ElementExtensions.cs"/>
         <Compile Include="Main.cs" />
