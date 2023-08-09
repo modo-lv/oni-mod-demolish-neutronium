@@ -49,7 +49,7 @@ namespace DemolishNeutronium {
     /// </remarks>
     private static readonly Dictionary<Int32, Single> DigTimes = new Dictionary<Int32, Single>();
 
-    
+
     /// <summary>
     /// Initialize PLib stuff and configure the settings window.
     /// </summary>
@@ -96,8 +96,9 @@ namespace DemolishNeutronium {
         if (!cell.Element().IsNeutronium()) return;
         if (DigTimes.Get(cell, Single.MaxValue) < Single.MaxValue) return;
 
-        LogService.Debug($"Dig time for cell {cell} (mass: {Grid.Mass[cell]}) not calculated yet, setting hardness to 254.");
-        cell.Element().hardness = 254;
+        LogService.Debug($"Dig time for cell {cell} (mass: {Grid.Mass[cell]}) not calculated yet, " +
+                         $"setting hardness to that of Obsidian.");
+        cell.Element().hardness = Obsidian.Element().hardness;
       }
 
 
@@ -110,8 +111,8 @@ namespace DemolishNeutronium {
         }
         else {
           DigTimes[cell] = __result *= 5;
-          LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring hardness to 255.");
-          cell.Element().hardness = 255;
+          LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring Neutronium hardness.");
+          cell.Element().hardness = Unobtanium.Element().hardness;
         }
       }
     }
@@ -132,7 +133,7 @@ namespace DemolishNeutronium {
         if (!__instance.IsNeutronium()) return;
 
         // Use Obsidian's hardness for dig skill determination.
-        __instance.Element().hardness = ElementLoader.FindElementByHash(SimHashes.Obsidian).hardness;
+        __instance.Element().hardness = Obsidian.Element().hardness;
       }
 
 
@@ -143,7 +144,7 @@ namespace DemolishNeutronium {
         __instance.SetWorkTime(Diggable.GetApproximateDigTime(__instance.Cell()));
         __instance.WorkTimeRemaining = __instance.workTime;
         // Skill requirement has been determined, restore hardness to original
-        __instance.Element().hardness = 255;
+        __instance.Element().hardness = Unobtanium.Element().hardness;
       }
 
     }
