@@ -1,5 +1,6 @@
 ﻿using System;
 using DemolishNeutronium.Extensions;
+using DemolishNeutronium.Models;
 using HarmonyLib;
 using JetBrains.Annotations;
 using KMod;
@@ -21,7 +22,7 @@ namespace DemolishNeutronium {
     /// </summary>
     [ItemCanBeNull] public static readonly Lazy<Element> NeutroniumDust = new Lazy<Element>(() => {
       var result = ElementLoader.elements.FindNeutroniumDust();
-      Main.Log.Info(
+      LogService.Info(
         NeutroniumDust != null
           ? "Neutronium Dust element found, will be dropped by Neutronium digs."
           : "Neutronium Dust not found, digs will drop nothing."
@@ -32,7 +33,7 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Mod settings. 
     /// </summary>
-    public static Lazy<Main.Settings> Config = new Lazy<Main.Settings>(Main.Settings.Load);
+    public static Lazy<Settings> Config = new Lazy<Settings>(SettingsService.Load);
 
     
     /// <summary>
@@ -41,7 +42,7 @@ namespace DemolishNeutronium {
     public override void OnLoad(Harmony harmony) {
       base.OnLoad(harmony);
       PUtil.InitLibrary();
-      new POptions().RegisterOptions(this, typeof(Main.Settings));
+      new POptions().RegisterOptions(this, typeof(Settings));
     }
 
     /// <summary>
@@ -52,8 +53,7 @@ namespace DemolishNeutronium {
     [HarmonyPatch(typeof(SaveLoader), "OnSpawn")]
     [HarmonyPostfix]
     public static void OnSaveGameLoad() {
-      Config = new Lazy<Main.Settings>(Main.Settings.Load);
-      Main.Log.Info($"Settings loaded: {JsonConvert.SerializeObject(Config.Value)}");
+      Config = new Lazy<Settings>(SettingsService.Load);
     }
 
     /// <summary>

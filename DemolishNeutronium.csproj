@@ -99,7 +99,8 @@
         <Compile Include="Extensions\ElementExtensions.cs"/>
         <Compile Include="Main.cs" />
         <Compile Include="MainMod.cs" />
-        <Compile Include="Main\Settings.cs" />
+        <Compile Include="Services\SettingsService.cs" />
+        <Compile Include="Models\Settings.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetouredField.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetouredMethod.cs" />
         <Compile Include="PLib\PLibCore\Detours\DetourException.cs" />
@@ -209,8 +210,8 @@
         <Compile Include="PLib\PLibUI\PUIUtils.cs" />
         <Compile Include="PLib\PLibUI\TextAnchorUtils.cs" />
         <Compile Include="PLib\PLibUI\UIDetours.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="Main\Log.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Services\LogService.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="mod.yaml">
@@ -226,7 +227,7 @@
         <Content Include="preview.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="README.md"/>
+        <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
