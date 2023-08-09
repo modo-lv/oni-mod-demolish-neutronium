@@ -46,5 +46,12 @@ namespace DemolishNeutronium.Models {
     )]
     [Limit(min: 1, max: 2)]
     public Single DustMultiplier { get; set; } = 2;
+
+    [Option(
+      title: "Log debugging info",
+      tooltip: "Enable this to log extra information that may be useful in solving problems with the mod.",
+      category: "Meta"
+    )]
+    public Boolean DebugLogging { get; set; } = false;
   }
 }

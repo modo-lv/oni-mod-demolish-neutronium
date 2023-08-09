@@ -32,10 +32,7 @@ namespace DemolishNeutronium {
       return result;
     });
 
-    /// <summary>
-    /// Mod settings. 
-    /// </summary>
-    public static Lazy<Settings> Config = new Lazy<Settings>(SettingsService.Load);
+    private static Settings Config => Main.Config.Value; 
 
     /// <summary>
     /// Holds dig times for different Neutronium tiles.
@@ -67,7 +64,7 @@ namespace DemolishNeutronium {
     [HarmonyPatch(typeof(SaveLoader), "OnSpawn")]
     [HarmonyPostfix]
     public static void OnSaveGameLoad() {
-      Config = new Lazy<Settings>(SettingsService.Load);
+      Main.Config = new Lazy<Settings>(SettingsService.Load);
       DigTimes.Clear();
     }
 
@@ -110,7 +107,7 @@ namespace DemolishNeutronium {
           LogService.Debug($"Dig time for cell {cell} already known: {__result}");
         }
         else {
-          DigTimes[cell] = __result *= Config.Value.DigTimeMultiplier;
+          DigTimes[cell] = __result *= Config.DigTimeMultiplier;
           LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring Neutronium hardness.");
           cell.Element().hardness = Unobtanium.Element().hardness;
         }
@@ -168,9 +165,9 @@ namespace DemolishNeutronium {
     static void OnDigComplete(ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
 
-      if (Config.Value.DustEnabled && NeutroniumDust.Value is Element dust) {
+      if (Config.DustEnabled && NeutroniumDust.Value is Element dust) {
         element_idx = dust.idx;
-        mass = Config.Value.DustMultiplier * (mass / 1000) * Config.Value.DustAmount;
+        mass = Config.DustMultiplier * (mass / 1000) * Config.DustAmount;
       }
       else {
         mass = 0;

@@ -12,11 +12,14 @@ namespace DemolishNeutronium {
     }
 
     /// <summary>
-    /// Log a message only if running a debug build.
+    /// Log a message only if running a debug build, or if the debug logging is enabled.
     /// </summary>
     public static void Debug(String line) {
 #if DEBUG
       Info(line);
+#else
+      if (Main.Config.Value.DebugLogging)
+        Info(line);
 #endif
     }
   }
