@@ -14,7 +14,7 @@ namespace DemolishNeutronium.Extensions {
     /// <returns>Neutronium Dust element, or <c>null</c> if it is not in the list.</returns>
     [CanBeNull]
     public static Element FindNeutroniumDust([NotNull] this IEnumerable<Element> elements) {
-      return elements.First(e => e.id.ToString() == "UnobtaniumDust");
+      return elements.FirstOrDefault(e => e.id.ToString() == "UnobtaniumDust");
     }
   }
 }
