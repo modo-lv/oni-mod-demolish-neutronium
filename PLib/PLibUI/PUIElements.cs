@@ -17,7 +17,6 @@
  */
 
 using PeterHan.PLib.Core;
-using PeterHan.PLib.Detours;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

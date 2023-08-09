@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using DemolishNeutronium.Extensions;
 using DemolishNeutronium.Models;
 using HarmonyLib;
-using JetBrains.Annotations;
 using KMod;
-using Newtonsoft.Json;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
 using static SimHashes;
@@ -116,12 +114,12 @@ namespace DemolishNeutronium {
 
 
     /// <summary>
-    /// Ensure Neutronium can be dug with Superduperhard Digging skill & has correct work time set.
+    /// Ensure Neutronium can be dug with Super-Duperhard Digging skill & has correct work time set.
     /// </summary>
     /// <remarks>
     /// Digging materials with hardness over 250 requires "Hazmat Digging" skill only available in the DLC,
     /// so for compatibility with vanilla we'll use Obsidian's hardness value to lower the requirement to
-    /// "Superduperhard Digging".
+    /// "Super-Duperhard Digging".
     /// </remarks>
     [HarmonyPatch(typeof(Diggable), "OnSpawn")]
     class OnSpawn {
