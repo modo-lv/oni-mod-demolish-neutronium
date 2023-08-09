@@ -127,7 +127,7 @@ namespace PeterHan.PLib.Options {
 		/// </summary>
 		/// <typeparam name="T">The type of the settings object.</typeparam>
 		/// <returns>The settings read, or null if they could not be read (e.g. newly installed).</returns>
-		public static T ReadSettings<T>() where T : class {
+		public static T? ReadSettings<T>() where T : class {
 			var type = typeof(T);
 			return ReadSettings(GetConfigPath(type.GetCustomAttribute<ConfigFileAttribute>(),
 				type.Assembly), type) as T;

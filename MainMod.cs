@@ -22,10 +22,10 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Neutronium Dust element (added by Rocketry Expanded mod).
     /// </summary>
-    [ItemCanBeNull] public static readonly Lazy<Element> NeutroniumDust = new Lazy<Element>(() => {
+    public static readonly Lazy<Element?> NeutroniumDust = new Lazy<Element?>(() => {
       var result = ElementLoader.elements.FindNeutroniumDust();
       LogService.Info(
-        NeutroniumDust != null
+        result != null
           ? "Neutronium Dust element found, will be dropped by Neutronium digs."
           : "Neutronium Dust not found, digs will drop nothing."
       );
