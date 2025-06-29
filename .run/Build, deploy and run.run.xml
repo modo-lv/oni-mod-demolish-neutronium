@@ -1,0 +1,13 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build, deploy and run" type="BatchConfigurationType" factoryName="Batch">
+    <module name="rider.module" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="./deploy-and-run.bat" />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Build" default="false" projectName="DemolishNeutronium" projectPath="$PROJECT_DIR$/DemolishNeutronium.csproj" />
+    </method>
+  </configuration>
+</component>

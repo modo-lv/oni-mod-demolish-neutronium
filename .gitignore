@@ -1,5 +1,6 @@
 .idea/
 lib/
+bin/
 obj/
 *.DotSettings.user
 packages/
