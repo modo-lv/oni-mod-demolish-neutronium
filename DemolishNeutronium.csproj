@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{BCD09976-294F-4442-B99D-16E85E32AF14}</ProjectGuid>
+        <ProjectGuid>{7AD50EEB-DDFF-4DC2-B701-8876ABB7F01A}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>DemolishNeutronium</RootNamespace>
@@ -19,7 +19,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>c:\Users\Martin\Documents\Klei\OxygenNotIncluded\mods\Dev\DemolishNeutronium\</OutputPath>
+        <OutputPath>bin\Debug\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
@@ -28,212 +28,67 @@
         <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>none</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>c:\Users\Martin\Documents\Klei\OxygenNotIncluded\mods\Local\DemolishNeutronium\</OutputPath>
+        <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="0Harmony">
-            <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Assembly-CSharp-firstpass">
-            <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="FMODUnity">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\FMODUnity.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Newtonsoft.Json">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="Unity.TextMeshPro">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine">
-            <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.ImageConversionModule">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.InputLegacyModule">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.TextCoreModule">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.TextRenderingModule">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.UI">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="UnityEngine.UIModule">
-          <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-          <Private>False</Private>
-        </Reference>
+      <Reference Include="0Harmony">
+        <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="mscorlib" />
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Newtonsoft.Json.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Configuration" />
+      <Reference Include="System.Xaml" />
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>C:\games\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Extensions\CellExtensions.cs"/>
-        <Compile Include="Extensions\DictionaryExtensions.cs" />
-        <Compile Include="Extensions\DiggableExtensions.cs"/>
-        <Compile Include="Extensions\ElementExtensions.cs"/>
-        <Compile Include="Extensions\SimHashesExtensions.cs" />
-        <Compile Include="Main.cs" />
-        <Compile Include="MainMod.cs" />
-        <Compile Include="Services\SettingsService.cs" />
-        <Compile Include="Models\Settings.cs" />
-        <Compile Include="PLib\PLibCore\Detours\DetouredField.cs" />
-        <Compile Include="PLib\PLibCore\Detours\DetouredMethod.cs" />
-        <Compile Include="PLib\PLibCore\Detours\DetourException.cs" />
-        <Compile Include="PLib\PLibCore\Detours\IDetouredField.cs" />
-        <Compile Include="PLib\PLibCore\Detours\LazyDetouredField.cs" />
-        <Compile Include="PLib\PLibCore\Detours\PDetours.cs" />
-        <Compile Include="PLib\PLibCore\ExtensionMethods.cs" />
-        <Compile Include="PLib\PLibCore\IPLibRegistry.cs" />
-        <Compile Include="PLib\PLibCore\IRefreshUserMenu.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\IPatchMethodInstance.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\IPLibAnnotation.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\PLibMethodAttribute.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\PLibPatchAttribute.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\PPatchManager.cs" />
-        <Compile Include="PLib\PLibCore\PatchManager\RunAt.cs" />
-        <Compile Include="PLib\PLibCore\PForwardedComponent.cs" />
-        <Compile Include="PLib\PLibCore\PGameUtils.cs" />
-        <Compile Include="PLib\PLibCore\PLibCorePatches.cs" />
-        <Compile Include="PLib\PLibCore\PLibLocalization.cs" />
-        <Compile Include="PLib\PLibCore\PLibStrings.cs" />
-        <Compile Include="PLib\PLibCore\PPatchTools.cs" />
-        <Compile Include="PLib\PLibCore\PRegistry.cs" />
-        <Compile Include="PLib\PLibCore\PRegistryComponent.cs" />
-        <Compile Include="PLib\PLibCore\PriorityQueue.cs" />
-        <Compile Include="PLib\PLibCore\PStateMachines.cs" />
-        <Compile Include="PLib\PLibCore\PTranspilerTools.cs" />
-        <Compile Include="PLib\PLibCore\PUtil.cs" />
-        <Compile Include="PLib\PLibCore\PVersion.cs" />
-        <Compile Include="PLib\PLibCore\PVersionList.cs" />
-        <Compile Include="PLib\PLibCore\Remote\PRemoteComponent.cs" />
-        <Compile Include="PLib\PLibCore\Remote\PRemoteRegistry.cs" />
-        <Compile Include="PLib\PLibCore\TextMeshProPatcher.cs" />
-        <Compile Include="PLib\PLibOptions\ButtonOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\CategoryExpandHandler.cs" />
-        <Compile Include="PLib\PLibOptions\CheckboxOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\Color32OptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\ColorBaseOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\ColorGradient.cs" />
-        <Compile Include="PLib\PLibOptions\ColorOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\CompositeOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\ConfigFileAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\DynamicOptionAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\FloatOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\IntOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\IOptions.cs" />
-        <Compile Include="PLib\PLibOptions\IOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\IOptionSpec.cs" />
-        <Compile Include="PLib\PLibOptions\LimitAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\LogFloatOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\ModDialogInfo.cs" />
-        <Compile Include="PLib\PLibOptions\ModInfoAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\NullableFloatOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\NullableIntOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\OptionAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\OptionsDialog.cs" />
-        <Compile Include="PLib\PLibOptions\OptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\OptionsHandlers.cs" />
-        <Compile Include="PLib\PLibOptions\POptions.cs" />
-        <Compile Include="PLib\PLibOptions\RequireDLCAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\RestartRequiredAttribute.cs" />
-        <Compile Include="PLib\PLibOptions\SelectOneOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\SingletonOptions.cs" />
-        <Compile Include="PLib\PLibOptions\SlidingBaseOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\StringOptionsEntry.cs" />
-        <Compile Include="PLib\PLibOptions\TextBlockOptionsEntry.cs" />
-        <Compile Include="PLib\PLibUI\IDynamicSizable.cs" />
-        <Compile Include="PLib\PLibUI\ImageTransform.cs" />
-        <Compile Include="PLib\PLibUI\ISettableFlexSize.cs" />
-        <Compile Include="PLib\PLibUI\ITooltipListableOption.cs" />
-        <Compile Include="PLib\PLibUI\IUIComponent.cs" />
-        <Compile Include="PLib\PLibUI\LayoutSizes.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\AbstractLayoutGroup.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\BoxLayoutGroup.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\BoxLayoutParams.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\BoxLayoutResults.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\CardLayoutGroup.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\CardLayoutResults.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\GridComponent.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\GridComponentSpec.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\GridLayoutResults.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\PGridLayoutGroup.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\RelativeLayoutGroup.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\RelativeLayoutParams.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\RelativeLayoutResults.cs" />
-        <Compile Include="PLib\PLibUI\Layouts\RelativeLayoutUtil.cs" />
-        <Compile Include="PLib\PLibUI\PButton.cs" />
-        <Compile Include="PLib\PLibUI\PCheckBox.cs" />
-        <Compile Include="PLib\PLibUI\PComboBox.cs" />
-        <Compile Include="PLib\PLibUI\PComboBoxComponent.cs" />
-        <Compile Include="PLib\PLibUI\PContainer.cs" />
-        <Compile Include="PLib\PLibUI\PDialog.cs" />
-        <Compile Include="PLib\PLibUI\PGridPanel.cs" />
-        <Compile Include="PLib\PLibUI\PLabel.cs" />
-        <Compile Include="PLib\PLibUI\PPanel.cs" />
-        <Compile Include="PLib\PLibUI\PRelativePanel.cs" />
-        <Compile Include="PLib\PLibUI\PScrollPane.cs" />
-        <Compile Include="PLib\PLibUI\PSlider.cs" />
-        <Compile Include="PLib\PLibUI\PSpacer.cs" />
-        <Compile Include="PLib\PLibUI\PTextArea.cs" />
-        <Compile Include="PLib\PLibUI\PTextComponent.cs" />
-        <Compile Include="PLib\PLibUI\PTextField.cs" />
-        <Compile Include="PLib\PLibUI\PTextFieldEvents.cs" />
-        <Compile Include="PLib\PLibUI\PToggle.cs" />
-        <Compile Include="PLib\PLibUI\PUIDelegates.cs" />
-        <Compile Include="PLib\PLibUI\PUIElements.cs" />
-        <Compile Include="PLib\PLibUI\PUITuning.cs" />
-        <Compile Include="PLib\PLibUI\PUIUtils.cs" />
-        <Compile Include="PLib\PLibUI\TextAnchorUtils.cs" />
-        <Compile Include="PLib\PLibUI\UIDetours.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Services\LogService.cs" />
+      <Compile Include="Extensions\CellExtensions.cs" />
+      <Compile Include="Extensions\CodeInstructionExtensions.cs" />
+      <Compile Include="Extensions\DictionaryExtensions.cs" />
+      <Compile Include="Extensions\DiggableExtensions.cs" />
+      <Compile Include="Extensions\ElementExtensions.cs" />
+      <Compile Include="Extensions\SimHashesExtensions.cs" />
+      <Compile Include="Main.cs" />
+      <Compile Include="MainMod.cs" />
+      <Compile Include="Models\Settings.cs" />
+      <Compile Include="Services\LogService.cs" />
+      <Compile Include="Services\SettingsService.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="mod.yaml">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Include="mod_info.yaml">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Include="PLib\PLibCore\translations\fr.po" />
-        <Content Include="PLib\PLibCore\translations\ru.po" />
-        <Content Include="PLib\PLibCore\translations\template.pot" />
-        <Content Include="PLib\PLibCore\translations\zh.po" />
-        <Content Include="preview.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Include="README.md" />
+      <Content Include="ILRepack.targets" />
+      <Content Include="mod.yaml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="mod_info.yaml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="preview.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="README.md">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="screenshot.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
@@ -241,5 +96,4 @@
     <Target Name="AfterBuild">
     </Target>
     -->
-
 </Project>

@@ -6,14 +6,14 @@ using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
+using UnityEngine;
 using static SimHashes;
 
-// ReSharper disable ArrangeTypeModifiers
-// ReSharper disable ArrangeTypeMemberModifiers
-// ReSharper disable UnusedMember.Local
-// ReSharper disable UnusedType.Local
-
 namespace DemolishNeutronium {
+  // ReSharper disable ArrangeTypeModifiers
+  // ReSharper disable ArrangeTypeMemberModifiers
+  // ReSharper disable UnusedMember.Local
+  // ReSharper disable UnusedType.Local
   // ReSharper disable once UnusedType.Global
   [HarmonyPatch]
   class MainMod : UserMod2 {
@@ -25,12 +25,12 @@ namespace DemolishNeutronium {
       LogService.Info(
         result != null
           ? "Neutronium Dust element found, will be dropped by Neutronium digs."
-          : "Neutronium Dust not found, digs will drop nothing."
+          : "Neutronium Dust not found, Neutronium digs will drop nothing."
       );
       return result;
     });
 
-    private static Settings Config => Main.Config.Value; 
+    private static Settings Config => Main.Config.Value;
 
     /// <summary>
     /// Holds dig times for different Neutronium tiles.
@@ -59,8 +59,7 @@ namespace DemolishNeutronium {
     /// to allow for a direct (config file edit) updates without having to go through the main menu,
     /// as well as the normal GUI approach. 
     /// </summary>
-    [HarmonyPatch(typeof(SaveLoader), "OnSpawn")]
-    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SaveLoader), "OnSpawn"), HarmonyPostfix]
     public static void OnSaveGameLoad() {
       Main.Config = new Lazy<Settings>(SettingsService.Load);
       DigTimes.Clear();
@@ -69,8 +68,7 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Make Neutronium diggable.   
     /// </summary>
-    [HarmonyPatch(typeof(Diggable), nameof(Diggable.Undiggable))]
-    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Diggable), nameof(Diggable.Undiggable)), HarmonyPostfix]
     public static void Undiggable(Element e, ref Boolean __result) {
       if (e.IsNeutronium())
         __result = false;
@@ -103,12 +101,45 @@ namespace DemolishNeutronium {
         if (DigTimes.Get(cell, Single.MaxValue) < Single.MaxValue) {
           __result = DigTimes[cell];
           LogService.Debug($"Dig time for cell {cell} already known: {__result}");
-        }
-        else {
+        } else {
           DigTimes[cell] = __result *= Config.DigTimeMultiplier;
-          LogService.Debug($"Dig time for cell {cell} calculated to {__result}, restoring Neutronium hardness.");
+          LogService.Debug(
+            $"Dig time for cell {cell} calculated to {__result}, restoring Neutronium hardness.");
           cell.Element().hardness = Unobtanium.Element().hardness;
         }
+      }
+    }
+
+    /// <summary>
+    /// Enables direct building on Neutronium. 
+    /// </summary>
+    [HarmonyPatch(
+      declaringType: typeof(BuildingDef),
+      methodName: "IsAreaClear",
+      argumentTypes: [
+        typeof(GameObject), typeof(Int32), typeof(Orientation), typeof(ObjectLayer),
+        typeof(ObjectLayer), typeof(Boolean), typeof(Boolean), typeof(String), typeof(Boolean)
+      ],
+      argumentVariations: [
+        ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Normal,
+        ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Out, ArgumentType.Normal
+      ]
+    )]
+    public static class IsAreaClear {
+      static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
+        LogService.Debug("Patching [BuildingDef.IsAreaClear] to treat Neutronium as Obsidian...");
+        return instructions.NeutroniumToObsidian();
+      }
+    }
+
+    /// <summary>
+    /// Prevents "Invalid build location" error when placing buildings on neutronium. 
+    /// </summary>
+    [HarmonyPatch(declaringType: typeof(BuildingDef), methodName: "IsAreaValid")]
+    public static class IsAreaValid {
+      static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
+        LogService.Debug("Patching [BuildingDef.IsAreaValid] to treat neutronium as obsidian...");
+        return instructions.NeutroniumToObsidian();
       }
     }
 
@@ -135,7 +166,7 @@ namespace DemolishNeutronium {
       static void Postfix(ref Diggable __instance) {
         if (!__instance.IsNeutronium()) return;
 
-        // Netronium's work time is set to infinity, so we have to override it manually. 
+        // Neutronium's work time is set to infinity, so we have to override it manually. 
         __instance.SetWorkTime(Diggable.GetApproximateDigTime(__instance.Cell()));
         __instance.WorkTimeRemaining = __instance.workTime;
         // Skill requirement has been determined, restore hardness to original
@@ -147,10 +178,12 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Use the purple demolishing laser instead of the regular red since we're not getting any resources from the dig.
     /// </summary>
-    [HarmonyPatch(typeof(Diggable), "UpdateColor")]
-    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Diggable), "UpdateColor"), HarmonyPostfix]
     static void UpdateColor(ref Diggable __instance, ref HashedString ___multitoolContext) {
       if (!__instance.IsNeutronium()) return;
+
+      // If we're getting dust then it's mining, not demolishing
+      if (Config.DustEnabled && NeutroniumDust.Value != null) return;
 
       ___multitoolContext = "demolish";
     }
@@ -158,16 +191,14 @@ namespace DemolishNeutronium {
     /// <summary>
     /// Prevent Neutronium resource from dropping when the tile has been dug out.
     /// </summary>
-    [HarmonyPatch(typeof(WorldDamage), nameof(WorldDamage.OnDigComplete))]
-    [HarmonyPrefix]
+    [HarmonyPatch(typeof(WorldDamage), nameof(WorldDamage.OnDigComplete)), HarmonyPrefix]
     static void OnDigComplete(ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
 
-      if (Config.DustEnabled && NeutroniumDust.Value is Element dust) {
+      if (Config.DustEnabled && NeutroniumDust.Value is { } dust) {
         element_idx = dust.idx;
         mass = Config.DustMultiplier * (mass / 1000) * Config.DustAmount;
-      }
-      else {
+      } else {
         mass = 0;
       }
     }
