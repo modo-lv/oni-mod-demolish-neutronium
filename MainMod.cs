@@ -110,9 +110,7 @@ namespace DemolishNeutronium {
       }
     }
 
-    /// <summary>
-    /// Enables direct building on Neutronium. 
-    /// </summary>
+    /// <summary>Enables direct building on Neutronium.</summary>
     [HarmonyPatch(
       declaringType: typeof(BuildingDef),
       methodName: "IsAreaClear",
@@ -127,18 +125,16 @@ namespace DemolishNeutronium {
     )]
     public static class IsAreaClear {
       static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
-        LogService.Debug("Patching [BuildingDef.IsAreaClear] to treat Neutronium as Obsidian...");
+        LogService.Debug("Patching [BuildingDef.IsAreaClear] to treat neutronium like any other material...");
         return instructions.NeutroniumToObsidian();
       }
     }
 
-    /// <summary>
-    /// Prevents "Invalid build location" error when placing buildings on neutronium. 
-    /// </summary>
+    /// <summary>Prevents "Invalid build location" error when placing buildings on neutronium.</summary>
     [HarmonyPatch(declaringType: typeof(BuildingDef), methodName: "IsAreaValid")]
     public static class IsAreaValid {
       static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
-        LogService.Debug("Patching [BuildingDef.IsAreaValid] to treat neutronium as obsidian...");
+        LogService.Debug("Patching [BuildingDef.IsAreaValid] to treat neutronium like any other material...");
         return instructions.NeutroniumToObsidian();
       }
     }
