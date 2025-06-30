@@ -25,7 +25,7 @@ namespace DemolishNeutronium {
       LogService.Info(
         result != null
           ? "Neutronium Dust element found, will be dropped by Neutronium digs."
-          : "Neutronium Dust not found, digs will drop nothing."
+          : "Neutronium Dust not found, Neutronium digs will drop nothing."
       );
       return result;
     });
@@ -135,7 +135,7 @@ namespace DemolishNeutronium {
       static void Postfix(ref Diggable __instance) {
         if (!__instance.IsNeutronium()) return;
 
-        // Netronium's work time is set to infinity, so we have to override it manually. 
+        // Neutronium's work time is set to infinity, so we have to override it manually. 
         __instance.SetWorkTime(Diggable.GetApproximateDigTime(__instance.Cell()));
         __instance.WorkTimeRemaining = __instance.workTime;
         // Skill requirement has been determined, restore hardness to original
@@ -151,6 +151,9 @@ namespace DemolishNeutronium {
     [HarmonyPostfix]
     static void UpdateColor(ref Diggable __instance, ref HashedString ___multitoolContext) {
       if (!__instance.IsNeutronium()) return;
+      
+      // If we're getting dust then it's mining, not demolishing
+      if (Config.DustEnabled && NeutroniumDust.Value != null) return;
 
       ___multitoolContext = "demolish";
     }
@@ -163,7 +166,7 @@ namespace DemolishNeutronium {
     static void OnDigComplete(ref Single mass, ref UInt16 element_idx) {
       if (!ElementLoader.elements[element_idx].IsNeutronium()) return;
 
-      if (Config.DustEnabled && NeutroniumDust.Value is Element dust) {
+      if (Config.DustEnabled && NeutroniumDust.Value is { } dust) {
         element_idx = dust.idx;
         mass = Config.DustMultiplier * (mass / 1000) * Config.DustAmount;
       }
