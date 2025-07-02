@@ -26,4 +26,4 @@ Tired of uneven map edges and geyser platforms messing with your room layouts? A
 
 
 ## Screenshot
-![image](https://user-images.githubusercontent.com/731551/149676344-dd8e90e9-2879-4646-905c-86292969e087.png)
+![image](https://github.com/modo-lv/oni-mods/blob/master/Modo.DemolishNeutronium/screenshot.png?raw=true)

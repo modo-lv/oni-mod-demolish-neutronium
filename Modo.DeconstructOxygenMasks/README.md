@@ -23,4 +23,4 @@ Adds the option to deconstruct Oxygen Masks (including worn ones) and recover th
   * Mac: `~/Library/Application Support/unity.Klei.Oxygen Not Included/mods/Local` 
 
 ## Screenshot
-![image](https://user-images.githubusercontent.com/731551/149676344-dd8e90e9-2879-4646-905c-86292969e087.png)
+![image](https://github.com/modo-lv/oni-mods/blob/master/Modo.DeconstructOxygenMasks/screenshot.png?raw=true)
