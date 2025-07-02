@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="ILRepacker" AfterTargets="Build">
+        <ItemGroup>
+            <InputAssemblies Include="$(OutputPath)$(TargetName)$(TargetExt)"/>
+            <InputAssemblies Include="$(OutputPath)\Core.dll" />
+            <InputAssemblies Include="$(OutputPath)\PLib.dll" />
+        </ItemGroup>
+
+        <ILRepack
+                Parallel="true"
+                InputAssemblies="@(InputAssemblies)"
+                TargetKind="Dll"
+                OutputFile="$(OutputPath)$(TargetName)$(TargetExt)"
+                LibraryPath="c:\games\steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed"
+        />
+    </Target>
+</Project>
