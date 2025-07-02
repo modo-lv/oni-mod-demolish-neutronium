@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--
+    Core does not need to be DLL-merged, but PLib has a dependency on ILRepack,
+    which tries to run its default build targets if an override isn't present.
+    -->
+    <Target Name="ILRepacker" Condition="false" />
+</Project>

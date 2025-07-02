@@ -1,0 +1,14 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Demolish Neutronium: DEV (run)" type="BatchConfigurationType" factoryName="Batch" activateToolWindowBeforeRun="false">
+    <module name="rider.module" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <option name="SCRIPT_NAME" value="./deploy-and-run.bat" />
+    <option name="PARAMETERS" value="Modo.DemolishNeutronium" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Kill ONI" run_configuration_type="BatchConfigurationType" />
+      <option name="Build" default="false" projectName="Modo.DemolishNeutronium" projectPath="$PROJECT_DIR$/Modo.DemolishNeutronium/Modo.DemolishNeutronium.csproj" />
+    </method>
+  </configuration>
+</component>

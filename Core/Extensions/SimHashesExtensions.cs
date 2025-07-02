@@ -1,4 +1,4 @@
-﻿namespace DemolishNeutronium.Extensions {
+﻿namespace Modo.Core.Extensions {
   public static class SimHashesExtensions {
     /// <summary>
     /// Find an Element by it's <see cref="SimHashes"/> value.

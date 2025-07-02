@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
 using static SimHashes;
 
-namespace DemolishNeutronium.Extensions;
+namespace Modo.Core.Extensions;
 
 public static class CodeInstructionExtensions {
   /// <summary>Replaces neutronium's ID with 0 in a list of IL instructions.</summary>

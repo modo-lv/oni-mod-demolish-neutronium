@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D6198576-4F8A-4981-94E7-07946156E56C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modo.DemolishNeutronium", "Modo.DemolishNeutronium\Modo.DemolishNeutronium.csproj", "{37EA9919-FA3C-4EB0-BCED-423368BA5214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modo.DeconstructOxygenMasks", "Modo.DeconstructOxygenMasks\Modo.DeconstructOxygenMasks.csproj", "{6A53F527-12CD-420C-B4B2-CA182470EC79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6198576-4F8A-4981-94E7-07946156E56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6198576-4F8A-4981-94E7-07946156E56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6198576-4F8A-4981-94E7-07946156E56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6198576-4F8A-4981-94E7-07946156E56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37EA9919-FA3C-4EB0-BCED-423368BA5214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EA9919-FA3C-4EB0-BCED-423368BA5214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EA9919-FA3C-4EB0-BCED-423368BA5214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EA9919-FA3C-4EB0-BCED-423368BA5214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A53F527-12CD-420C-B4B2-CA182470EC79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A53F527-12CD-420C-B4B2-CA182470EC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A53F527-12CD-420C-B4B2-CA182470EC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A53F527-12CD-420C-B4B2-CA182470EC79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
