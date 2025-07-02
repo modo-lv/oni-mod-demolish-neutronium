@@ -24,3 +24,6 @@ Adds the option to deconstruct Oxygen Masks (including worn ones) and recover th
 
 ## Screenshot
 ![image](https://github.com/modo-lv/oni-mods/blob/master/Modo.DeconstructOxygenMasks/screenshot.png?raw=true)
+
+## Source
+[GitHub](https://github.com/modo-lv/oni-mods/tree/master/Modo.DeconstructOxygenMasks)
