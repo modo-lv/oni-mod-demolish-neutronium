@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DemolishNeutronium.Extensions {
+namespace Modo.Core.Extensions {
   public static class DictionaryExtensions {
     /// <summary>
     /// Syntactic sugar wrapping around <see cref="T:System.Collections.Generic.IDictionary`2" /> accessor
@@ -13,10 +13,11 @@ namespace DemolishNeutronium.Extensions {
     /// <param name="key">Key for finding the value.</param>
     /// <param name="fallback">Value to return if the key is not found.</param>
     /// <returns>Found value or <paramref name="fallback" />.</returns>
-    public static TValue Get<TKey, TValue>(
+    public static TValue? Get<TKey, TValue>(
       this IDictionary<TKey, TValue> dictionary,
       TKey key,
-      TValue fallback = default) {
+      TValue? fallback = default
+    ) {
       return dictionary.TryGetValue(key, out var value) ? value : fallback;
     }
   }

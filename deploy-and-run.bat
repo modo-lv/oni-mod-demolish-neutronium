@@ -1,10 +1,5 @@
-cd /d %~dp0
-robocopy bin\Release c:\users\martin\Documents\Klei\OxygenNotIncluded\mods\Local\DemolishNeutronium *.yaml *.md *.png DemolishNeutronium.dll /mir ^
-if ERRORLEVEL goto FAIL
+@echo off
 
-c:\games\steam\steam.exe -applaunch 457140
-goto END
+cd /d "%~dp0"
 
-:FAIL
-pause
-:END
+call deploy.bat %* && start c:\games\steam\steam.exe -applaunch 457140
